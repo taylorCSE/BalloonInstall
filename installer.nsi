@@ -1,5 +1,7 @@
 !define PRODUCT_NAME "Balloon Logging and Tracking"
 
+Name "${PRODUCT_NAME}"
+
 RequestExecutionLevel admin
 InstallDir "$PROGRAMFILES\${PRODUCT_NAME}"
 
