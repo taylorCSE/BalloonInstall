@@ -6,7 +6,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
 /*!40101 SET NAMES utf8 */;
 
-CREATE TABLE `aip` (
+CREATE TABLE IF NOT EXISTS `aip` (
   `FlightId` varchar(50) NOT NULL,
   `DeviceId` int(11) NOT NULL,
   `PacketId` bigint(20) NOT NULL,
@@ -34,7 +34,7 @@ CREATE TABLE `aip` (
   `A18` int(11) default NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-CREATE TABLE `dip` (
+CREATE TABLE IF NOT EXISTS `dip` (
   `FlightId` varchar(50) NOT NULL,
   `DeviceId` int(11) NOT NULL,
   `PacketId` bigint(20) NOT NULL,
@@ -45,14 +45,14 @@ CREATE TABLE `dip` (
   PRIMARY KEY  (`FlightId`,`DeviceId`,`PacketId`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-CREATE TABLE `flights` (
+CREATE TABLE IF NOT EXISTS `flights` (
   `ID` varchar(50) NOT NULL,
   `Description` varchar(200) default NULL,
   `Timestamp` datetime NOT NULL,
   PRIMARY KEY  (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-CREATE TABLE `gps` (
+CREATE TABLE IF NOT EXISTS `gps` (
   `FlightId` varchar(50) NOT NULL,
   `DeviceId` int(11) NOT NULL,
   `PacketId` bigint(20) NOT NULL,

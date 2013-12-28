@@ -22,6 +22,9 @@ Section "MySQL"
 SectionEnd
 
 Section "Database Configuration"
+    SetOutPath "$TEMP"
+    File "bins\schema.sql"
+    ExecWait "cmd /C mysql -u root -D balloontrack < $\"$TEMP\schema.sql$\""
 SectionEnd
 
 Section "BalloonLogger"
