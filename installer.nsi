@@ -5,6 +5,8 @@ Name "${PRODUCT_NAME}"
 RequestExecutionLevel admin
 InstallDir "$PROGRAMFILES\${PRODUCT_NAME}"
 
+outFile "${PRODUCT_NAME}.exe"
+
 SetCompressor zlib
 
 Page components
