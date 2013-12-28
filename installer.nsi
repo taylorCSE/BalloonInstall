@@ -1,5 +1,6 @@
 !define PRODUCT_NAME "Balloon Logging and Tracking"
 
+RequestExecutionLevel admin
 InstallDir "$PROGRAMFILES\${PRODUCT_NAME}"
 
 SetCompressor zlib
