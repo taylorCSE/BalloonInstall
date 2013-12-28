@@ -34,6 +34,20 @@ Section "BalloonLogger"
     CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}\BalloonLogger.lnk" "$INSTDIR\BalloonLogger\BalloonLogger.exe"
 SectionEnd
 
+Section "BalloonGraph"
+    SetOutPath $INSTDIR\BalloonGraph
+    File "bins\BalloonGraph\*"
+    CreateDirectory "$SMPROGRAMS\${PRODUCT_NAME}"
+    CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}\BalloonGraph.lnk" "$INSTDIR\BalloonGraph\BalloonGraph.exe"
+SectionEnd
+
+Section "BalloonMap"
+    SetOutPath $INSTDIR\BalloonMap
+    File "bins\BalloonMap\*"
+    CreateDirectory "$SMPROGRAMS\${PRODUCT_NAME}"
+    CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}\BalloonMap.lnk" "$INSTDIR\BalloonMap\BalloonMap.exe"
+SectionEnd
+
 Section -any
     WriteUninstaller $INSTDIR\uninstall.exe
     CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}\Uninstall.lnk" "$INSTDIR\Uninstall.exe"
