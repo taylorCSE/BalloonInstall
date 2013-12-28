@@ -1,4 +1,5 @@
 !define PRODUCT_NAME "Balloon Logging and Tracking"
+!define MYSQL_PATH "$PROGRAMFILES\MySQL\MySQL Server 5.5"
 
 Name "${PRODUCT_NAME}"
 
@@ -7,7 +8,7 @@ InstallDir "$PROGRAMFILES\${PRODUCT_NAME}"
 
 outFile "${PRODUCT_NAME}.exe"
 
-SetCompressor zlib
+SetCompressor /SOLID zlib
 
 Page components
 Page directory
@@ -19,12 +20,15 @@ Section "MySQL"
     SetOutPath "$TEMP"
     File "bins\mysql-5.5.35-win32.msi"
     ExecWait "msiexec /i $TEMP\mysql-5.5.35-win32.msi /passive"
+    File "bins\mysql.ini"
+    ExecWait "$\"${MYSQL_PATH}\bin\MySQLInstanceConfig.exe$\" -i -q $\"-lc:\mysql_install.log$\" $\"-nMySQL Server 5.5 (Balloon track)$\" $\"-p${MYSQL_PATH}$\" -v5.5.35 $\"-t$TEMP\mysql.ini$\" ServerType=DEVELOPMENT DatabaseType=MIXED ConnectionUsage=DSS Port=3306 ServiceName=MySQL55 RootPassword="
 SectionEnd
 
 Section "Database Configuration"
     SetOutPath "$TEMP"
+    ExecWait "$\"${MYSQL_PATH}\bin\mysql.exe$\" -u root -e $\"create database balloontrack$\""
     File "bins\schema.sql"
-    ExecWait "cmd /C mysql -u root -D balloontrack < $\"$TEMP\schema.sql$\""
+    ExecWait "cmd /C $\"$\"${MYSQL_PATH}\bin\mysql.exe$\" -u root -D balloontrack < $\"$TEMP\schema.sql$\"$\""
 SectionEnd
 
 Section "BalloonLogger"
