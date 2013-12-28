@@ -34,11 +34,15 @@ SectionEnd
 Section -any
     WriteUninstaller $INSTDIR\uninstall.exe
     CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}\Uninstall.lnk" "$INSTDIR\Uninstall.exe"
+    WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}" "DisplayName" "${PRODUCT_NAME}"
+	WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}" "UninstallString" "$\"$INSTDIR\uninstall.exe$\""
+	
 SectionEnd
 
 Section "Uninstall"    
     Delete "$SMPROGRAMS\${PRODUCT_NAME}\*.lnk"
     RMDir /r "$SMPROGRAMS\${PRODUCT_NAME}"
+    DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
     Delete $INSTDIR\uninstall.exe  
     RMDir /r "$INSTDIR"
 SectionEnd  
