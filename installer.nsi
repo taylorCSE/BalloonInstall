@@ -16,6 +16,9 @@ Section "MySQL"
     ExecWait "msiexec /i $TEMP\mysql-5.5.35-win32.msi /passive"
 SectionEnd
 
+Section "Database Configuration"
+SectionEnd
+
 Section "BalloonLogger"
   SetOutPath $INSTDIR\BalloonLogger
   File "bins\BalloonLogger\*"
