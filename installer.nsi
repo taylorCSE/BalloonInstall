@@ -1,5 +1,7 @@
-name "Balloon Logging and Tracking"
- 
+!define PRODUCT_NAME "Balloon Logging and Tracking"
+
+InstallDir "$PROGRAMFILES\${PRODUCT_NAME}"
+
 SetCompressor zlib
 
 Page components
@@ -23,7 +25,7 @@ SectionEnd
 Section "Uninstall"    
   SetShellVarContext all  
   Delete "$DESKTOP\Your Application.lnk"  
-  RMDir /r "$SMPROGRAMS\$NAME"  
+  RMDir /r "$SMPROGRAMS\${PRODUCT_NAME}"  
   RMDir /r "$INSTDIR"  
   Delete $INSTDIR\uninstall.exe  
   DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\YourApp"  
