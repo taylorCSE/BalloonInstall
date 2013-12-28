@@ -25,16 +25,20 @@ Section "Database Configuration"
 SectionEnd
 
 Section "BalloonLogger"
-  SetOutPath $INSTDIR\BalloonLogger
-  File "bins\BalloonLogger\*"
-  WriteUninstaller $INSTDIR\uninstaller.exe
+    SetOutPath $INSTDIR\BalloonLogger
+    File "bins\BalloonLogger\*"
+    CreateDirectory "$SMPROGRAMS\${PRODUCT_NAME}"
+    CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}\BalloonLogger.lnk" "$INSTDIR\BalloonLogger\BalloonLogger.exe"
+SectionEnd
+
+Section -any
+    WriteUninstaller $INSTDIR\uninstall.exe
+    CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}\Uninstall.lnk" "$INSTDIR\Uninstall.exe"
 SectionEnd
 
 Section "Uninstall"    
-  SetShellVarContext all  
-  Delete "$DESKTOP\Your Application.lnk"  
-  RMDir /r "$SMPROGRAMS\${PRODUCT_NAME}"  
-  RMDir /r "$INSTDIR"  
-  Delete $INSTDIR\uninstall.exe  
-  DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\YourApp"  
+    Delete "$SMPROGRAMS\${PRODUCT_NAME}\*.lnk"
+    RMDir /r "$SMPROGRAMS\${PRODUCT_NAME}"
+    Delete $INSTDIR\uninstall.exe  
+    RMDir /r "$INSTDIR"
 SectionEnd  
