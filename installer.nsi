@@ -8,7 +8,7 @@ InstallDir "$PROGRAMFILES\${PRODUCT_NAME}"
 
 outFile "${PRODUCT_NAME}.exe"
 
-SetCompressor /SOLID zlib
+SetCompressor /SOLID lzma
 
 Page components
 Page directory
